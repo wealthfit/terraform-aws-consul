@@ -1,7 +1,17 @@
-## ---------------------------------------------------------------------------------------------------------------------
-# THESE TEMPLATES REQUIRE TERRAFORM VERSION 0.12 AND ABOVE
-# ---------------------------------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------------------------
+# Set S3 Backend for remote state and specify region
+# ----------------------------------------------------------------------------------------------------------------------
+terraform {
+  backend "s3" {}
+}
+provider "aws" {
+  region = "us-west-2"
+}
 
+# ----------------------------------------------------------------------------------------------------------------------
+# REQUIRE A SPECIFIC TERRAFORM VERSION OR HIGHER
+# This module has been updated with 0.12 syntax, which means it is no longer compatible with any versions below 0.12.
+# ----------------------------------------------------------------------------------------------------------------------
 terraform {
   required_version = ">= 0.12"
 }
@@ -75,4 +85,3 @@ resource "aws_security_group_rule" "allow_serf_lan_udp_inbound_from_self" {
 
   security_group_id = var.security_group_id
 }
-
